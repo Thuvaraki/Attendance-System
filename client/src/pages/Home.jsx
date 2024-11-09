@@ -10,9 +10,11 @@ const Home = () => {
   };
 
   return (
-    <div>
-      <h1>Welcome user!</h1>
-      <button onClick={handleLogout}>Logout</button>
+    <div className="container">
+      <h1 className="heading">Welcome user!</h1>
+      <button className="button" onClick={handleLogout}>
+        Logout
+      </button>
     </div>
   );
 };

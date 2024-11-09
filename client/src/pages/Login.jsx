@@ -32,29 +32,34 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <div>
-        <label htmlFor="username">Username</label>
-        <input
-          required
-          type="text"
-          name="username"
-          value={credentials.username}
-          onChange={handleInputChange}
-        />
+    <div className="contaniner">
+      <div className="login-card">
+        <h1 className="heading">Login Page</h1>
+        <div className="inputContainer">
+          <label htmlFor="username">Username : </label>
+          <input
+            required
+            type="text"
+            name="username"
+            value={credentials.username}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="inputContainer">
+          <label htmlFor="password">Password : </label>
+          <input
+            required
+            type="text"
+            name="password"
+            value={credentials.password}
+            onChange={handleInputChange}
+          />
+        </div>
+        <button className="button" onClick={handleLogin}>
+          Login
+        </button>
+        <div className="error">{error && <p>{error}</p>}</div>
       </div>
-      <div>
-        <label htmlFor="password">Password</label>
-        <input
-          required
-          type="text"
-          name="password"
-          value={credentials.password}
-          onChange={handleInputChange}
-        />
-      </div>
-      <button onClick={handleLogin}>Login</button>
-      {error && <p>{error}</p>}
     </div>
   );
 };
