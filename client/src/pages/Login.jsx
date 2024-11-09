@@ -1,10 +1,14 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
   });
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   function handleInputChange(e) {
     const { name, value } = e.target;
@@ -13,6 +17,19 @@ const Login = () => {
       [name]: value,
     }));
   }
+
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/login",
+        credentials
+      );
+      localStorage.setItem("token", response.data.token);
+      navigate("/home");
+    } catch (error) {
+      setError("Invalid credentials");
+    }
+  };
 
   return (
     <div>
@@ -36,7 +53,8 @@ const Login = () => {
           onChange={handleInputChange}
         />
       </div>
-      <button>Login</button>
+      <button onClick={handleLogin}>Login</button>
+      {error && <p>{error}</p>}
     </div>
   );
 };
